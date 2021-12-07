@@ -155,6 +155,67 @@ exports.updateProfile = catchAsyncErrors(async (req, res, next) => {
     })
 })
 
+
+exports.updateUser = catchAsyncErrors(async (req, res, next) => {
+    const newUserData = {
+        name: req.body.name,
+        email: req.body.email,
+        role: req.body.role
+    }
+
+    // Update avatar : TODO
+
+    const user = await User.findByIdAndUpdate(req.params.id, newUserData, {
+        new: true,
+        runValidators: true,
+        useFindAndModify: false
+    }) 
+
+    res.status(200).json({
+        success:true
+    })
+})
+
+// Get All users => /api/v1/admin/users
+exports.allUsers = catchAsyncErrors(async (req, res, next) => {
+    const users = await User.find();
+
+    res.status(200).json({
+        success: true,
+        users
+    })
+})
+
+exports.getUserDetails = catchAsyncErrors(async(req, res, next) => {
+    const user = await User.findById(req.params.id);
+
+    if(!user) {
+        return next(new ErrorHandler(`User does not found with id: ${req.params.id}`))
+    }
+
+    res.status(200).json({
+        success: true,
+        user
+    })
+})
+
+exports.deleteUser = catchAsyncErrors(async(req, res, next) => {
+    const user = await User.findById(req.params.id);
+
+    if(!user) {
+        return next(new ErrorHandler(`User does not found with id: ${req.params.id}`))
+    }
+
+    // Remove avatar from cloudinary 
+    await user.remove();
+
+    res.status(200).json({
+        success: true,
+        user
+    })
+})
+
+
 exports.logout = catchAsyncErrors( async( req, res, next) => {
     res.cookies('token', null, {
         expires: new Date(Date.now()),
@@ -166,5 +227,3 @@ exports.logout = catchAsyncErrors( async( req, res, next) => {
         message: 'Logged Out'
     })
 })
-
-

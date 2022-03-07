@@ -4,7 +4,7 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "start": "node backend/server.js",
+    "start": "node server.js",
     "dev": "SET NODE_ENV=DEVELOPMENT& nodemon backend/server",
     "prod": "SET NODE_ENV=PRODUCTION& nodemon backend/server",
     "seeder": "node utils/seeder.js"
@@ -28,6 +28,7 @@
     "multer": "^1.4.3",
     "nodemailer": "^6.7.2",
     "path": "^0.12.7",
+    "stripe": "^8.207.0",
     "validator": "^13.7.0"
   },
   "devDependencies": {

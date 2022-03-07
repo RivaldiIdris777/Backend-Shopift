@@ -25,7 +25,7 @@
         }],
         "category" : "Electronics",
         "seller" : "Amazon",
-        "stock" : 0,
+        "stock" : 120,
         "numOfReviews" : 2,
         "reviews": []
     },
@@ -40,7 +40,7 @@
         }],
         "category" : "Electronics",
         "seller" : "Amazon",
-        "stock" : 1,
+        "stock" : 50,
         "numOfReviews" : 12,
         "reviews": []
     },
@@ -115,7 +115,7 @@
         }],
         "category" : "Laptops",
         "seller" : "Amazon",
-        "stock" : 0,
+        "stock" : 115,
         "numOfReviews" : 56,
         "reviews": []
     },
